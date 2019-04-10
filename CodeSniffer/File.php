@@ -1311,7 +1311,7 @@ class PHP_CodeSniffer_File
                 }
                 break;
             default:
-                continue;
+                continue 2;
             }//end switch
         }//end for
 
@@ -2220,7 +2220,7 @@ class PHP_CodeSniffer_File
                 // If it's null, then there must be no parameters for this
                 // method.
                 if ($currVar === null) {
-                    continue;
+                    continue 2;
                 }
 
                 $vars[$paramCount]         = array();
