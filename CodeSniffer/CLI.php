@@ -510,13 +510,17 @@ class PHP_CodeSniffer_CLI
     {
         // We don't know about any additional switches; just files.
         if ($arg{0} === '-') {
-            if ($this->dieOnUnknownArg === false) {
-                return $values;
-            }
+        	if (strpos($arg, '--stdin-path') !== false) {
+        		$arg = str_replace('--stdin-path=', '', $arg);
+        	} else {
+	            if ($this->dieOnUnknownArg === false) {
+	                return $values;
+	            }
 
-            echo 'ERROR: option "'.$arg.'" not known.'.PHP_EOL.PHP_EOL;
-            $this->printUsage();
-            exit(2);
+	            echo 'ERROR: option "'.$arg.'" not known.'.PHP_EOL.PHP_EOL;
+	            $this->printUsage();
+	            exit(2);
+        	}
         }
 
         $file = realpath($arg);
